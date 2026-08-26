@@ -15,6 +15,34 @@ import tarfile
 import tempfile
 import urllib.request
 
+# GitHub 对无 UA / 默认 UA（Python-urllib）的下载请求可能返回 403，显式给一个浏览器 UA。
+_USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/120.0 Safari/537.36"
+)
+_TIMEOUT = 120  # 秒
+
+
+def _download(url: str, dest: str) -> None:
+    """带浏览器 UA + 超时 + 进度显示的下载。"""
+    req = urllib.request.Request(url, headers={"User-Agent": _USER_AGENT})
+    with urllib.request.urlopen(req, timeout=_TIMEOUT) as resp:
+        total = int(resp.headers.get("Content-Length", 0) or 0)
+        done = 0
+        with open(dest, "wb") as f:
+            while True:
+                chunk = resp.read(1024 * 256)
+                if not chunk:
+                    break
+                f.write(chunk)
+                done += len(chunk)
+                if total:
+                    pct = done * 100 // total
+                    print(f"\r       {done // 1024 // 1024} / {total // 1024 // 1024} MB ({pct}%)", end="", flush=True)
+    print()
+
+
 # 标准 SenseVoice Small（FunAudioLLM/SenseVoice 转换，自带标点 + ITN，约 163MB）
 # 注意：不要换成 sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2025-09-09 ——
 # 那是粤语专用变体（ASLP-lab sensevoice_small_yue），无标点且普通话识别丢字。
@@ -54,9 +82,9 @@ def main():
     print(f"[1/3] 下载 {url}")
     print(f"      -> {archive}")
     try:
-        urllib.request.urlretrieve(url, archive)
+        _download(url, archive)
     except Exception as e:
-        print(f"[error] 下载失败: {e}")
+        print(f"\n[error] 下载失败: {e}")
         print("请检查网络，或手动下载后解压到 voice-models/ 目录。")
         sys.exit(1)
 
