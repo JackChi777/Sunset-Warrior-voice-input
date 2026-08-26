@@ -112,6 +112,8 @@ voice-input-lite/
 └── voice-models/            # 模型目录（下载后生成）
 ```
 
+> 🔧 **开发者请看**：[DEVELOPING.md](DEVELOPING.md) —— 记录了完整开发、测试、构建、发布流程，以及维护过程中踩过的坑。想参与改进（尤其补齐其他语言的后处理）从这里读起。
+
 ## 未完善之处与 Roadmap（欢迎贡献）
 
 > **🐧 Linux 已知问题**：Linux 下 GUI 界面运行尚不稳定（Qt 窗口/显示问题），建议优先在 Windows 上使用；识别引擎本身跨平台正常，后续会修复 Linux UI。
