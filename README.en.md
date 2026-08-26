@@ -93,6 +93,8 @@ voice-input-lite/
 
 ## Known Limitations & Roadmap (contributions welcome)
 
+> **🐧 Linux known issue**: The GUI is not yet stable on Linux (Qt window/display issues). Windows is currently the recommended platform; the recognition engine itself is cross-platform and works fine. Linux UI will be fixed later.
+
 **The rule layer is still rough** — it is "good enough", not "perfect":
 
 - **`的/地/得` (de particles):** correct in most cases, but complex sentences (multi-level modifiers, cross-clause) are still misjudged sometimes
