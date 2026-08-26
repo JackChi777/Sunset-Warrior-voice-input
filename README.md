@@ -35,6 +35,17 @@
   - **自学习纠错**：手动修正后自动学习规则并沉淀到 `user_data/learned_rules.json`
 - 💾 **闲置自动卸载**：默认闲置 10 分钟自动释放模型内存，下次录音秒级重载
 
+## 🪟 Windows 免安装版（EXE）
+
+不想装 Python？直接下载打包好的单文件 EXE（含模型），双击即用：
+
+1. 打开 [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) 页面
+2. 下载最新版 `Sunset-Warrior-win64.zip`（内含 exe + 模型，解压后约 400MB）
+3. 解压到任意目录，双击 `Sunset-Warrior.exe` 即可使用
+
+> EXE 由 [GitHub Actions](.github/workflows/build-windows.yml) 自动构建（打 `v*` 标签时触发）。
+> 首次运行如遇系统提示「已保护你的电脑」，点「更多信息」→「仍要运行」即可（未签名程序属正常提示）。
+
 ## 快速开始
 
 ### 1. 安装依赖（Python 3.8+）

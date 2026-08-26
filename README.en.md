@@ -27,6 +27,17 @@ Offline voice input tool, powered by [sherpa-onnx](https://github.com/k2-fsa/she
   - **Self-learning corrections**: manual fixes are learned as rules persisted to `user_data/learned_rules.json`
 - 💾 **Idle auto-unload**: by default unloads the model from memory after 10 minutes idle; reload is fast on the next use
 
+## 🪟 Windows Portable Build (EXE)
+
+Don't want to install Python? Download the packaged single-file EXE (model included) and double-click to run:
+
+1. Open the [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) page
+2. Download the latest `Sunset-Warrior-win64.zip` (contains exe + model, ~400 MB after extraction)
+3. Extract to any folder and double-click `Sunset-Warrior.exe`
+
+> The EXE is built automatically by [GitHub Actions](.github/workflows/build-windows.yml) (triggered on `v*` tags).
+> On first run, if Windows SmartScreen warns, click "More info" → "Run anyway" (normal for unsigned programs).
+
 ## Quick Start
 
 ### 1. Install dependencies (Python 3.8+)

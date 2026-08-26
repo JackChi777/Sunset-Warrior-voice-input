@@ -27,6 +27,17 @@
   - **自己学習訂正**: 手動で修正すると自動的にルール化され `user_data/learned_rules.json` に保存
 - 💾 **アイドル時自動アンロード**: 既定ではアイドル 10 分でモデルをメモリから解放。次回利用時は高速に再読み込み
 
+## 🪟 Windows ポータブル版（EXE）
+
+Python をインストールしたくない方は、パッケージ済みの単一 EXE（モデル同梱）をダウンロードしてダブルクリックするだけで使えます：
+
+1. [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) ページを開く
+2. 最新の `Sunset-Warrior-win64.zip`（exe + モデル同梱、解凍後約 400MB）をダウンロード
+3. 任意のフォルダに解凍し、`Sunset-Warrior.exe` をダブルクリック
+
+> EXE は [GitHub Actions](.github/workflows/build-windows.yml) が自動ビルドします（`v*` タグで発火）。
+> 初回実行時に Windows SmartScreen の警告が出たら「詳細情報」→「実行」をクリックしてください（未署名プログラムでは通常の表示です）。
+
 ## クイックスタート
 
 ### 1. 依存関係のインストール（Python 3.8以降）

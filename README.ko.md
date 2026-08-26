@@ -27,6 +27,17 @@
   - **자기 학습 교정**: 수동 수정 시 자동으로 규칙화되어 `user_data/learned_rules.json`에 저장
 - 💾 **유휴 시 자동 언로드**: 기본적으로 유휴 10분 후 모델을 메모리에서 해제. 다음 사용 시 빠르게 다시 로드
 
+## 🪟 Windows 휴대용 버전(EXE)
+
+Python을 설치하고 싶지 않다면? 패키징된 단일 EXE(모델 포함)를 다운로드하여 더블클릭만 하면 됩니다:
+
+1. [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) 페이지 열기
+2. 최신 `Sunset-Warrior-win64.zip`(exe + 모델 포함, 압축 해제 후 약 400MB) 다운로드
+3. 아무 폴더에 압축 해제 후 `Sunset-Warrior.exe` 더블클릭
+
+> EXE는 [GitHub Actions](.github/workflows/build-windows.yml)이 자동 빌드합니다(`v*` 태그에서 트리거).
+> 첫 실행 시 Windows SmartScreen 경고가 뜨면 "추가 정보" → "계속 실행"을 클릭하세요(서명되지 않은 프로그램의 일반적인 표시).
+
 ## 빠른 시작
 
 ### 1. 의존성 설치(Python 3.8+)
