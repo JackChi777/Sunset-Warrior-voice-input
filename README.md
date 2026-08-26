@@ -37,14 +37,16 @@
 
 ## 🪟 Windows 免安装版（EXE）
 
-不想装 Python？直接下载打包好的单文件 EXE（含模型），双击即用：
+不想装 Python？直接下载打包好的单文件 EXE，双击即用：
 
 1. 打开 [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) 页面
-2. 下载最新版 `Sunset-Warrior-win64.zip`（内含 exe + 模型，解压后约 400MB）
-3. 解压到任意目录，双击 `Sunset-Warrior.exe` 即可使用
+2. 下载最新版 `Sunset-Warrior-win64.zip`（内含 exe，约几十 MB）
+3. 解压到任意目录，双击 `Sunset-Warrior.exe`
+4. **首次运行**会自动检测模型：缺失时弹窗询问，选「是」即从 HuggingFace 自动下载模型（约 163MB，免登录，一次即可，之后本地运行无需网络）
 
 > EXE 由 [GitHub Actions](.github/workflows/build-windows.yml) 自动构建（打 `v*` 标签时触发）。
 > 首次运行如遇系统提示「已保护你的电脑」，点「更多信息」→「仍要运行」即可（未签名程序属正常提示）。
+> 想跳过自动下载，也可手动运行 `python scripts/download_models.py` 或把模型目录放 exe 旁的 `voice-models/`。
 
 ## 快速开始
 

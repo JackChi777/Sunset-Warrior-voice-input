@@ -17,7 +17,6 @@
 """
 
 import os
-import shutil
 import subprocess
 import sys
 
@@ -25,7 +24,6 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__fi
 PC_DIR = os.path.join(PROJECT_ROOT, "pc")
 DIST_DIR = os.path.join(PROJECT_ROOT, "dist")
 BUILD_DIR = os.path.join(PROJECT_ROOT, "build")
-VOICE_MODELS = os.path.join(PROJECT_ROOT, "voice-models")
 
 
 def main() -> int:
@@ -82,14 +80,9 @@ def main() -> int:
         print("[build] 未找到产物 exe")
         return 1
 
-    # 可选：本地已有模型则拷贝到 dist/voice-models/，方便直接试跑
-    if os.path.isdir(VOICE_MODELS) and os.listdir(VOICE_MODELS):
-        dst = os.path.join(DIST_DIR, "voice-models")
-        shutil.copytree(VOICE_MODELS, dst, dirs_exist_ok=True)
-        print(f"[build] 已拷贝模型 -> {dst}")
-    else:
-        print("[build] 本地无模型，exe 首次运行需下载（scripts/download_models.py）")
-
+    # 模型不打包进 exe（163MB 太大）。首次运行程序会弹窗询问并从
+    # HuggingFace 自动下载（免认证），下载到 exe 同目录 voice-models/。
+    print("[build] 模型未打包：首次运行时会自动从 HuggingFace 下载")
     return 0
 
 

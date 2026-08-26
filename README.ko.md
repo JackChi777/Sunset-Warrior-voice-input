@@ -29,14 +29,16 @@
 
 ## 🪟 Windows 휴대용 버전(EXE)
 
-Python을 설치하고 싶지 않다면? 패키징된 단일 EXE(모델 포함)를 다운로드하여 더블클릭만 하면 됩니다:
+Python을 설치하고 싶지 않다면? 패키징된 단일 EXE를 다운로드하여 더블클릭만 하면 됩니다:
 
 1. [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) 페이지 열기
-2. 최신 `Sunset-Warrior-win64.zip`(exe + 모델 포함, 압축 해제 후 약 400MB) 다운로드
+2. 최신 `Sunset-Warrior-win64.zip`(exe만, 수십 MB) 다운로드
 3. 아무 폴더에 압축 해제 후 `Sunset-Warrior.exe` 더블클릭
+4. **첫 실행 시** 모델을 자동 감지: 없으면 대화상자에서 확인 후 HuggingFace에서 자동 다운로드(약 163MB, 로그인 불필요·1회만, 이후 오프라인 동작)
 
 > EXE는 [GitHub Actions](.github/workflows/build-windows.yml)이 자동 빌드합니다(`v*` 태그에서 트리거).
 > 첫 실행 시 Windows SmartScreen 경고가 뜨면 "추가 정보" → "계속 실행"을 클릭하세요(서명되지 않은 프로그램의 일반적인 표시).
+> 자동 다운로드를 건너뛰려면 `python scripts/download_models.py`를 실행하거나 exe 옆 `voice-models/`에 모델을 넣으세요.
 
 ## 빠른 시작
 

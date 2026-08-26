@@ -29,14 +29,16 @@
 
 ## 🪟 Windows ポータブル版（EXE）
 
-Python をインストールしたくない方は、パッケージ済みの単一 EXE（モデル同梱）をダウンロードしてダブルクリックするだけで使えます：
+Python をインストールしたくない方は、パッケージ済みの単一 EXE をダウンロードしてダブルクリックするだけで使えます：
 
 1. [Releases](https://github.com/JackChi777/Sunset-Warrior-voice-input/releases) ページを開く
-2. 最新の `Sunset-Warrior-win64.zip`（exe + モデル同梱、解凍後約 400MB）をダウンロード
+2. 最新の `Sunset-Warrior-win64.zip`（exe のみ、数十 MB）をダウンロード
 3. 任意のフォルダに解凍し、`Sunset-Warrior.exe` をダブルクリック
+4. **初回起動時**にモデルを自動検出：無ければダイアログで確認し、HuggingFace から自動ダウンロード（約 163MB、ログイン不要・一度きり、以後はオフラインで動作）
 
 > EXE は [GitHub Actions](.github/workflows/build-windows.yml) が自動ビルドします（`v*` タグで発火）。
 > 初回実行時に Windows SmartScreen の警告が出たら「詳細情報」→「実行」をクリックしてください（未署名プログラムでは通常の表示です）。
+> 自動ダウンロードを避けたい場合は `python scripts/download_models.py` を実行するか、exe と同じフォルダの `voice-models/` にモデルを配置してください。
 
 ## クイックスタート
 

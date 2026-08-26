@@ -83,6 +83,7 @@ from PyQt5.QtWidgets import (
     QVBoxLayout,
     QWidget,
     QTextEdit,
+    QMessageBox,
     QLabel,
     QComboBox,
     QHBoxLayout,
@@ -111,7 +112,11 @@ from proofreading import proofread
 from config import config
 from input_injector import get_text_injector, reset_text_injector
 from hotkey_listener import start_global_hotkey
+from platform_utils import get_voice_models_dir
 from pynput import keyboard
+
+# 模型下载（首次运行自动下载，HuggingFace 免认证）
+from model_downloader import download_model as _download_model, MODEL_DIR_NAME as _MODEL_DIR_NAME
 
 # ---------------------------------------------------------------------------
 # SenseVoice 模型目录解析
@@ -315,6 +320,27 @@ class TranscriptionWorker(QThread):
             gc.collect()
 
 
+class ModelDownloadWorker(QThread):
+    """后台下载 SenseVoice 模型（首次运行时自动下载，HuggingFace 免认证）。"""
+
+    progress = pyqtSignal(int, int, int, int)  # done, total, file_index, file_count
+    finished_dl = pyqtSignal(bool, str)         # ok, message
+
+    def __init__(self, target_root: str, parent=None):
+        super().__init__(parent)
+        self.target_root = target_root
+
+    def run(self):
+        try:
+            ok, msg = _download_model(self.target_root, progress_cb=self._on_progress)
+        except Exception as e:
+            ok, msg = False, f"下载异常: {type(e).__name__}: {e}"
+        self.finished_dl.emit(ok, msg)
+
+    def _on_progress(self, done, total, idx, n):
+        self.progress.emit(done, total, idx, n)
+
+
 class MainWindow(QMainWindow):
     # 跨线程信号（热键监听线程 → 主线程）
     start_recording_signal = pyqtSignal()
@@ -347,6 +373,9 @@ class MainWindow(QMainWindow):
         # 用于采纳/拒绝修正的原始/修正文本
         self._last_raw_text = ""
         self._last_corrected_text = ""
+
+        # 首次运行自动下载（模型缺失时懒启动）
+        self._download_worker = None
 
         # 加载模型
         self.load_models()
@@ -501,7 +530,54 @@ class MainWindow(QMainWindow):
         if self.load_sensevoice_model():
             self.status_label.setText("SenseVoice 模型加载成功，可以开始录音")
         else:
-            self.status_label.setText("SenseVoice 模型加载失败，请检查模型文件（见 scripts/download_models.py）")
+            self.status_label.setText("SenseVoice 模型加载失败")
+            self._offer_model_download()
+
+    # ------------------------------------------------------------------
+    # 首次运行：模型自动下载（HuggingFace 免认证）
+    # ------------------------------------------------------------------
+    def _offer_model_download(self):
+        """模型缺失时弹窗询问是否下载；是则后台下载，完成后自动重载。"""
+        if self._download_worker is not None and self._download_worker.isRunning():
+            return
+        reply = QMessageBox.question(
+            self,
+            "模型未找到",
+            "未找到 SenseVoice 模型（约 163MB）。\n\n"
+            "是否现在从 HuggingFace 自动下载？\n"
+            "（下载一次即可，之后本地运行无需网络）",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.Yes,
+        )
+        if reply != QMessageBox.Yes:
+            self.status_label.setText(
+                "模型未加载。可运行 scripts/download_models.py 或修改 config.json 的 asr.sensevoice_model_dir"
+            )
+            return
+
+        self.status_label.setText("正在下载模型（约 163MB）...")
+        self._download_worker = ModelDownloadWorker(get_voice_models_dir(), self)
+        self._download_worker.progress.connect(self._on_download_progress)
+        self._download_worker.finished_dl.connect(self._on_download_finished)
+        self._download_worker.start()
+
+    def _on_download_progress(self, done, total, idx, n):
+        if total > 0:
+            pct = done * 100 // total
+            self.status_label.setText(
+                f"正在下载模型 [{idx + 1}/{n}] {done // 1024 // 1024}/{total // 1024 // 1024} MB ({pct}%)"
+            )
+
+    def _on_download_finished(self, ok, msg):
+        if ok:
+            self.status_label.setText("模型下载完成，正在加载...")
+            if self.load_sensevoice_model():
+                self.status_label.setText("SenseVoice 模型加载成功，可以开始录音")
+            else:
+                self.status_label.setText(f"模型已下载但加载失败: {msg}")
+        else:
+            self.status_label.setText(f"模型下载失败: {msg}")
+            QMessageBox.warning(self, "下载失败", msg)
 
     def load_sensevoice_model(self):
         """加载 SenseVoice Small（sherpa-onnx，自带标点 + ITN）。"""
