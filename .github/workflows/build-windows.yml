@@ -27,14 +27,18 @@ jobs:
           python -u scripts/build_exe.py 2>&1 | tee build-log.txt
           exit ${PIPESTATUS[0]}
 
-      - name: 构建日志摘要（失败时写入 step summary，便于 API 读取）
+      - name: 构建日志输出为 annotations（失败时，公开 API 可读）
         if: failure()
         shell: bash
         run: |
-          echo "### Build log (last 80 lines)" >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          tail -80 build-log.txt >> "$GITHUB_STEP_SUMMARY" || echo '(no build-log.txt)' >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if [ -f build-log.txt ]; then
+            echo "::error file=build-log.txt::===== build-log.txt (last 60 lines) ====="
+            tail -60 build-log.txt | while IFS= read -r line; do
+              echo "::error file=build-log.txt::${line}"
+            done
+          else
+            echo "::error file=build-log.txt::(build-log.txt not created)"
+          fi
 
       - name: 组装发布目录
         shell: bash
