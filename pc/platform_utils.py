@@ -7,7 +7,28 @@
 
 import os
 import platform
+import sys
 from typing import Optional
+
+
+# ---------------------------------------------------------------------------
+# 打包环境识别
+# ---------------------------------------------------------------------------
+
+def is_frozen() -> bool:
+    """是否运行在 PyInstaller 打包的 exe 中（sys.frozen 由 PyInstaller 注入）。"""
+    return bool(getattr(sys, "frozen", False))
+
+
+def get_app_dir() -> str:
+    """应用数据目录（可写）。
+
+    - 源码模式：pc/ 目录（config.json、user_data 所在处）
+    - 打包 exe：exe 所在目录（用户把 config.json / user_data / voice-models 放 exe 旁）
+    """
+    if is_frozen():
+        return os.path.dirname(os.path.abspath(sys.executable))
+    return os.path.dirname(os.path.abspath(__file__))
 
 
 # ---------------------------------------------------------------------------
@@ -46,12 +67,19 @@ _PROJECT_ROOT: Optional[str] = None
 
 
 def get_project_root() -> str:
-    """返回项目根目录（voice-input-lite/pc/ 的上二级）。"""
+    """返回项目根目录。
+
+    - 源码模式：voice-input-lite/（pc/ 的上一级）
+    - 打包 exe：exe 所在目录（voice-models 放 exe 旁）
+    """
     global _PROJECT_ROOT
     if _PROJECT_ROOT is None:
-        _PROJECT_ROOT = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "../")
-        )
+        if is_frozen():
+            _PROJECT_ROOT = os.path.dirname(os.path.abspath(sys.executable))
+        else:
+            _PROJECT_ROOT = os.path.abspath(
+                os.path.join(os.path.dirname(__file__), "../")
+            )
     return _PROJECT_ROOT
 
 

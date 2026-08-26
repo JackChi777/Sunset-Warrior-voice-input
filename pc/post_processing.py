@@ -2131,18 +2131,16 @@ def extract_general_diff(raw: str, corrected: str, max_len: int = 6) -> list:
 # ===================== 档位 5：热词 + 术语 fuzzy 替换 =====================
 import os
 
-_DEFAULT_TERMS_PATH = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'user_data', 'it_terms.txt'
-)
+from platform_utils import get_app_dir
+
+_DATA_DIR = get_app_dir()
+
+_DEFAULT_TERMS_PATH = os.path.join(_DATA_DIR, 'user_data', 'it_terms.txt')
 # 用户可追加词表：与基础词表平级，基础词表更新不会被覆盖，用户新词可长期累积。
-_DEFAULT_USER_TERMS_PATH = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'user_data', 'it_terms_user.txt'
-)
+_DEFAULT_USER_TERMS_PATH = os.path.join(_DATA_DIR, 'user_data', 'it_terms_user.txt')
 # 学科/领域词库（THUOCL 清华开放词库自动生成，仅收 jieba 不认识的学科词）。
 # 与用户表分离：可整体重新生成，不覆盖用户手工增补；用户想补词仍写 it_terms_user.txt。
-_DEFAULT_SUBJECTS_PATH = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'user_data', 'it_terms_subjects.txt'
-)
+_DEFAULT_SUBJECTS_PATH = os.path.join(_DATA_DIR, 'user_data', 'it_terms_subjects.txt')
 
 
 def _load_terms_file(path: str, tag: str, n: int) -> int:
@@ -2577,7 +2575,7 @@ def add_word_to_user_dict(word: str, score: float = 2.0,
 import hashlib
 
 _DEFAULT_LEARNED_RULES_PATH = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'user_data', 'learned_rules.json'
+    _DATA_DIR, 'user_data', 'learned_rules.json'
 )
 _PROMOTE_THRESHOLD = 2  # 跨不同句子出现 ≥2 次才升级为全局替换
 
@@ -3400,7 +3398,7 @@ def _load_yixing_words(path: Optional[str] = None) -> dict:
     if _YIXING_MAP is not None:
         return _YIXING_MAP
     path = path or os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), 'user_data', 'yixing_words.txt')
+        _DATA_DIR, 'user_data', 'yixing_words.txt')
     m: dict = {}
     try:
         with open(path, 'r', encoding='utf-8') as f:

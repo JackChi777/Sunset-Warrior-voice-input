@@ -969,7 +969,8 @@ def _get_bigram_lm():
     _BIGRAM_LM_TRIED = True
     try:
         from char_bigram import CharBigramLM
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+        from platform_utils import get_app_dir
+        path = os.path.join(get_app_dir(),
                             'user_data', 'char_bigram.npz')
         if os.path.exists(path):
             _BIGRAM_LM = CharBigramLM.load(path)

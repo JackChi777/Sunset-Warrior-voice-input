@@ -8,14 +8,16 @@ import json
 import os
 from typing import Dict, Optional, List
 
+from platform_utils import get_app_dir
+
 
 class ConfigManager:
     """配置管理器"""
 
     def __init__(self, config_file: Optional[str] = None):
         if config_file is None:
-            # 默认将配置文件保存在当前脚本同级目录下
-            base_dir = os.path.dirname(os.path.abspath(__file__))
+            # 默认与主程序同目录（源码 pc/；打包后为 exe 所在目录）
+            base_dir = get_app_dir()
             self.config_file = os.path.join(base_dir, "config.json")
         else:
             self.config_file = config_file
