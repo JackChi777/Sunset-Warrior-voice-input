@@ -1,4 +1,4 @@
-# Voice Input (SenseVoice Lite)
+# Sunet-Warrior · Voice Input
 
 ![License: MIT](https://img.shields.io/github/license/JackChi777/Sunet-Warrior-voice-input)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)
@@ -8,7 +8,7 @@
 >
 > (English below)
 
-> **📌 About**：Hold right Shift, speak, and release to auto-paste the recognized text into the active window — an offline, free, fully-local voice input tool (SenseVoice Small).
+> **📌 About**：**Sunet-Warrior** — hold right Shift, speak, and release to auto-paste the recognized text into the active window. An offline, free, fully-local voice input tool (SenseVoice Small).
 
 Offline voice input tool, powered by [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) with the **SenseVoice Small** model (standard edition, ~163 MB, pure int8, runs smoothly on CPU). Hold **right Shift** to talk; when you release, the recognized text is automatically pasted into the currently active window. All inference runs locally — no network requests.
 

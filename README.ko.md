@@ -1,4 +1,4 @@
-# 음성 입력 (SenseVoice 라이트)
+# Sunet-Warrior（석양의 무사）· 음성 입력
 
 ![License: MIT](https://img.shields.io/github/license/JackChi777/Sunet-Warrior-voice-input)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)
@@ -8,7 +8,7 @@
 >
 > (아래는 한국어 설명)
 
-> **📌 프로젝트 소개**: 오른쪽 Shift를 누른 채 말하고, 놓으면 인식된 텍스트가 활성 창에 자동으로 붙여넣기됩니다 — 오프라인·무료·완전 로컬 음성 입력 도구(SenseVoice Small).
+> **📌 프로젝트 소개**: **Sunet-Warrior（석양의 무사）** — 오른쪽 Shift를 누른 채 말하고, 놓으면 인식된 텍스트가 활성 창에 자동으로 붙여넣기됩니다. 오프라인·무료·완전 로컬 음성 입력 도구(SenseVoice Small).
 
 오프라인 음성 입력 도구입니다. [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 기반의 **SenseVoice Small** 모델(표준판, 약 163MB, 순수 int8, CPU에서 부드럽게 동작)을 사용합니다. **오른쪽 Shift를 누른 채로 말하면**, 놓는 순간 인식된 텍스트가 현재 활성 창에 자동으로 붙여넣어집니다. 모든 추론은 로컬에서 이루어지며 네트워크 요청이 없습니다.
 

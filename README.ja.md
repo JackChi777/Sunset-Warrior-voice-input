@@ -1,4 +1,4 @@
-# ボイス入力（SenseVoice ライト版）
+# Sunet-Warrior（夕陽の侍）· ボイス入力
 
 ![License: MIT](https://img.shields.io/github/license/JackChi777/Sunet-Warrior-voice-input)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)
@@ -8,7 +8,7 @@
 >
 > （以下は日本語の説明）
 
-> **📌 プロジェクト紹介**：右 Shift を押しながら話し、離すと認識テキストをアクティブウィンドウへ自動貼り付け——オフライン・無料・完全ローカルの音声入力ツール（SenseVoice Small）。
+> **📌 プロジェクト紹介**：**Sunet-Warrior（夕陽の侍）**——右 Shift を押しながら話し、離すと認識テキストをアクティブウィンドウへ自動貼り付け。オフライン・無料・完全ローカルの音声入力ツール（SenseVoice Small）。
 
 オフライン音声入力ツールです。[sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) を基にした **SenseVoice Small** モデル（標準版・約 163MB・純 int8・CPU で快適に動作）を使用します。**右 Shift を押しながら話す**と、離したときに認識したテキストが現在アクティブなウィンドウへ自動的に貼り付けられます。推論はすべてローカルで完結し、ネットワーク通信は一切ありません。
 

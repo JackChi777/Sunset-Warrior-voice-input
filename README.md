@@ -1,4 +1,4 @@
-# Voice Input（SenseVoice 精简版）
+# Sunet-Warrior（夕阳武士）· 语音输入
 
 ![License: MIT](https://img.shields.io/github/license/JackChi777/Sunet-Warrior-voice-input)
 ![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)
@@ -8,7 +8,7 @@
 >
 > （以下为中文说明）
 
-> **📌 项目简介**：按住右 Shift 说话，松开自动把识别文本粘贴到当前窗口——离线、免费、纯本地的语音输入工具（SenseVoice Small）。
+> **📌 项目简介**：**Sunet-Warrior（夕阳武士）**——按住右 Shift 说话，松开自动把识别文本粘贴到当前窗口。离线、免费、纯本地的语音输入工具（SenseVoice Small）。
 
 离线语音输入工具：按住 **右 Shift** 说话，松开后自动把识别文本粘贴到当前活动窗口。
 
