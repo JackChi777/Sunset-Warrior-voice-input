@@ -6,6 +6,10 @@ on:
       - 'v*'
   workflow_dispatch: {}   # 也可以手动触发
 
+# 发布 Release 需要写权限（创建 tag 对应的 release + 上传资产）
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -62,4 +66,3 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: Sunset-Warrior-win64.zip
-          generate_release_notes: true
