@@ -27,12 +27,14 @@ jobs:
           python -u scripts/build_exe.py 2>&1 | tee build-log.txt
           exit ${PIPESTATUS[0]}
 
-      - name: 上传构建日志（失败也上传，便于排查）
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-log
-          path: build-log.txt
+      - name: 构建日志摘要（失败时写入 step summary，便于 API 读取）
+        if: failure()
+        shell: bash
+        run: |
+          echo "### Build log (last 80 lines)" >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          tail -80 build-log.txt >> "$GITHUB_STEP_SUMMARY" || echo '(no build-log.txt)' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
 
       - name: 组装发布目录
         shell: bash
