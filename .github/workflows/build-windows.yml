@@ -23,6 +23,7 @@ jobs:
           pip install -r pc/requirements.txt
 
       - name: 打包 EXE（不含模型，首次运行自动下载）
+        shell: bash
         run: |
           python -u scripts/build_exe.py 2>&1 | tee build-log.txt
           exit ${PIPESTATUS[0]}
