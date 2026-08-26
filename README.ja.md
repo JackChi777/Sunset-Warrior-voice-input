@@ -1,5 +1,9 @@
 # ボイス入力（SenseVoice ライト版）
 
+![License: MIT](https://img.shields.io/github/license/JackChi777/Sunet-Warrior-voice-input)
+![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue)
+![CI](https://img.shields.io/github/actions/workflow/status/JackChi777/Sunet-Warrior-voice-input/ci.yml)
+
 > 🌐 **対応言語のドキュメント：** [中文](README.md) · [English](README.en.md) · [한국어](README.ko.md)
 >
 > （以下は日本語の説明）
