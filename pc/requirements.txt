@@ -1,0 +1,28 @@
+# 语音输入精简版（仅 SenseVoice）依赖
+# 安装: pip install -r requirements.txt
+
+# ASR 推理（SenseVoice Small，sherpa-onnx）
+sherpa-onnx==1.13.3
+
+# GUI
+pyqt5==5.15.9
+
+# 音频采集
+numpy==1.26.4
+sounddevice==0.4.6
+
+# 文本后处理（规则层）
+jieba==0.42.1
+pypinyin  # 可选：同音变体展开（未安装时自动降级为仅精确替换）
+requests==2.31.0
+
+# 文本注入（识别结果自动粘贴到活动窗口）
+pyautogui==0.9.54
+pyperclip==1.8.2
+pygetwindow==0.0.9
+pynput==1.7.6
+psutil==5.9.0
+
+# Linux 额外系统包（仅 Linux 需要）:
+#   X11:  sudo apt install xdotool
+#   Wayland: sudo apt install wtype wl-clipboard

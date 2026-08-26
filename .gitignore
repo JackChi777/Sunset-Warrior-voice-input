@@ -1,0 +1,25 @@
+# 模型文件（体积大，用 scripts/download_models.py 下载）
+voice-models/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行时产物
+jieba_cache/
+*.log
+
+# 用户数据（本地个性化词表/纠错规则）
+pc/user_data/learned_rules.json
+pc/user_data/it_terms_user.txt
+
+# 配置（首次运行自动生成默认值）
+pc/config.json
+
+# IDE
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,255 @@
+# voice-input/pc/user_data/it_terms.txt
+# 默认 IT / 编程 / 写作 热词词表
+#
+# 格式：热词  权重（1.0~5.0，浮点）
+#   - 编程相关（高频英文/CS 词汇）：权重 4.5~5.0
+#   - 工具/云服务/API：权重 3.5~4.5
+#   - 写作书面高频词：权重 2.0~3.0
+#   - 聊天口语残留：权重 1.0~1.5（保守，避免幻觉）
+#
+# 加载：
+#   - jieba.add_word(word, freq=int(score * 1000)) 在 startup 阶段
+#   - POST 阶段做 fuzzy match（编辑距离 ≤ 1）
+#
+# 用户可自行在 user_data/it_terms_user.txt 追加（不重置覆盖本文件）
+
+# ============ 编程语言（5.0，宁可杀错）============
+Python 5.0
+JavaScript 5.0
+TypeScript 5.0
+Java 5.0
+Kotlin 5.0
+Swift 5.0
+Objective-C 5.0
+C++ 5.0
+C 5.0
+C# 5.0
+Go 5.0
+Rust 5.0
+Ruby 5.0
+PHP 5.0
+Perl 5.0
+Scala 5.0
+Haskell 5.0
+Elixir 5.0
+Erlang 5.0
+Dart 5.0
+Lua 5.0
+R 5.0
+MATLAB 5.0
+SQL 5.0
+HTML 5.0
+CSS 5.0
+SCSS 5.0
+Less 5.0
+Bash 5.0
+Shell 5.0
+PowerShell 5.0
+Zsh 5.0
+
+# ============ 前端框架 / 库（5.0）============
+React 5.0
+Vue 5.0
+Angular 5.0
+Svelte 5.0
+Solid 5.0
+Next.js 5.0
+Nuxt 5.0
+Remix 5.0
+Astro 5.0
+Webpack 5.0
+Vite 5.0
+Rollup 5.0
+Parcel 5.0
+ESLint 5.0
+Prettier 5.0
+Jest 5.0
+Vitest 5.0
+Cypress 5.0
+Playwright 5.0
+Puppeteer 5.0
+Storybook 5.0
+Tailwind 5.0
+Bootstrap 5.0
+Element 5.0
+Ant Design 5.0
+Material UI 5.0
+Chakra 5.0
+
+# ============ 后端 / 框架（5.0）============
+Node.js 5.0
+Express 5.0
+Koa 5.0
+Fastify 5.0
+NestJS 5.0
+Django 5.0
+Flask 5.0
+FastAPI 5.0
+Spring 5.0
+SpringBoot 5.0
+Rails 5.0
+Laravel 5.0
+Gin 5.0
+Echo 5.0
+
+# ============ 数据库 / 中间件（4.5）============
+MySQL 4.5
+PostgreSQL 4.5
+Postgres 4.5
+MongoDB 4.5
+Redis 4.5
+Memcached 4.5
+SQLite 4.5
+ClickHouse 4.5
+Elasticsearch 4.5
+Cassandra 4.5
+DynamoDB 4.5
+BigTable 4.5
+Snowflake 4.5
+Kafka 4.5
+RabbitMQ 4.5
+RocketMQ 4.5
+Pulsar 4.5
+NATS 4.5
+gRPC 4.5
+Thrift 4.5
+Protobuf 4.5
+
+# ============ 云服务 / Docker / K8s（5.0）============
+AWS 5.0
+Azure 5.0
+GCP 5.0
+阿里云 5.0
+腾讯云 5.0
+华为云 5.0
+Docker 5.0
+Kubernetes 5.0
+K8s 5.0
+K9s 5.0
+Helm 5.0
+Istio 5.0
+Envoy 5.0
+Prometheus 5.0
+Grafana 5.0
+Jaeger 4.5
+OpenTelemetry 4.5
+Terraform 4.5
+Ansible 4.5
+Pulumi 4.5
+ArgoCD 4.5
+Jenkins 4.5
+GitLab 4.5
+GitHub 5.0
+GitLab 5.0
+Bitbucket 4.5
+
+# ============ 数据科学 / AI（5.0）============
+PyTorch 5.0
+TensorFlow 5.0
+Keras 5.0
+Scikit-learn 5.0
+NumPy 5.0
+Pandas 5.0
+Matplotlib 5.5
+Seaborn 5.0
+Jupyter 5.0
+HuggingFace 5.0
+LangChain 5.0
+LlamaIndex 5.0
+OpenAI 5.0
+Claude 5.0
+Ollama 5.0
+ChatGLM 5.0
+Qwen 5.0
+LLaMA 5.0
+Mistral 5.0
+Gemini 5.0
+Whisper 5.0
+SenseVoice 5.0
+Paraformer 5.0
+MacBERT 5.0
+Mengzi 5.0
+
+# ============ 工程概念（4.5）============
+Refactor 4.5
+重构 4.5
+部署 4.5
+调试 4.5
+编译 4.5
+打包 4.5
+提交 4.0
+推送 4.0
+拉取 4.0
+合并 4.0
+变基 4.0
+回滚 4.0
+发版 4.0
+灰度 4.5
+蓝绿 4.5
+AB 测试 4.5
+A/B 4.5
+单元测试 4.5
+集成测试 4.5
+端到端 4.5
+CI/CD 5.0
+流水线 4.0
+依赖注入 4.0
+控制反转 4.0
+面向对象 4.0
+函数式 4.0
+响应式 4.0
+声明式 4.0
+命令式 4.0
+并发 4.0
+并行 4.0
+异步 4.0
+同步 4.0
+协程 4.0
+线程 4.0
+进程 4.0
+死锁 4.0
+竞态 4.0
+内存泄漏 4.0
+空指针 4.0
+NullPointerException 4.5
+IndexOutOfBounds 4.0
+KeyError 4.0
+Exception 4.0
+Traceback 4.0
+Stack 4.0
+Heap 4.0
+GC 4.0
+
+# ============ 写作 / 书面高频（2.0）============
+因此 2.0
+然而 2.0
+此外 2.0
+尽管 2.0
+纵使 2.0
+即便 2.0
+倘若 2.0
+固然 2.0
+然则 2.0
+何况 2.0
+乃至 2.0
+乃至于是 2.0
+综上所述 2.0
+总而言之 2.0
+与此同时 2.0
+另一方面 2.0
+反之 2.0
+换言之 2.0
+即所谓 2.0
+鉴于此 2.0
+
+# ============ 聊天口语残留（1.0~1.5）============
+嗯 1.0
+啊 1.0
+呃 1.0
+哦 1.0
+诶 1.0
+哎 1.0
+
+# 注：标点不写进本文件——load_it_terms_into_jieba 会把每一行都 add_word 进
+# jieba 分词词典，标点入表会污染分词。句末标点处理由 post_processing 的
+# normalize_punctuation 负责，与热词无关。
