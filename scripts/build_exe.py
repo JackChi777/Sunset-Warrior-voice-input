@@ -20,6 +20,14 @@ import os
 import subprocess
 import sys
 
+# CI 的 Windows runner 控制台默认可能是 cp1252，非 UTF-8 的 print 会崩。
+# 强制使用 UTF-8 错误处理，避免中文 print 抛 UnicodeEncodeError。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "../"))
 PC_DIR = os.path.join(PROJECT_ROOT, "pc")
 DIST_DIR = os.path.join(PROJECT_ROOT, "dist")
@@ -28,7 +36,7 @@ BUILD_DIR = os.path.join(PROJECT_ROOT, "build")
 
 def main() -> int:
     if not os.path.isdir(PC_DIR):
-        print(f"[ERROR] 找不到 pc/ 目录: {PC_DIR}")
+        print(f"[ERROR] pc/ dir not found: {PC_DIR}")
         return 1
 
     # PyInstaller 需要把数据文件打进 exe（打包后从 _MEIPASS 读取）：
@@ -101,11 +109,11 @@ def main() -> int:
 
     cmd.append(os.path.join(PC_DIR, "main.py"))
 
-    print(f"[build] 项目根: {PROJECT_ROOT}")
-    print(f"[build] 执行: {' '.join(cmd[:8])} ...")
+    print(f"[build] project root: {PROJECT_ROOT}")
+    print(f"[build] running: {' '.join(cmd[:8])} ...")
     rc = subprocess.call(cmd, cwd=PC_DIR)
     if rc != 0:
-        print("[build] PyInstaller 失败")
+        print("[build] PyInstaller failed")
         return rc
 
     exe = os.path.join(DIST_DIR, "Sunset-Warrior.exe")
@@ -113,12 +121,12 @@ def main() -> int:
         size_mb = os.path.getsize(exe) / 1024 / 1024
         print(f"[build] OK: {exe} ({size_mb:.1f} MB)")
     else:
-        print("[build] 未找到产物 exe")
+        print("[build] exe not found")
         return 1
 
     # 模型不打包进 exe（163MB 太大）。首次运行程序会弹窗询问并从
     # HuggingFace 自动下载（免认证），下载到 exe 同目录 voice-models/。
-    print("[build] 模型未打包：首次运行时会自动从 HuggingFace 下载")
+    print("[build] model not bundled; will be auto-downloaded on first run")
     return 0
 
 
