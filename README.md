@@ -8,6 +8,8 @@
 >
 > （以下为中文说明）
 
+> **📌 项目简介**：按住右 Shift 说话，松开自动把识别文本粘贴到当前窗口——离线、免费、纯本地的语音输入工具（SenseVoice Small）。
+
 离线语音输入工具：按住 **右 Shift** 说话，松开后自动把识别文本粘贴到当前活动窗口。
 
 基于 [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 的 **SenseVoice Small** 模型（标准版，约 163MB，纯 int8，CPU 即可流畅运行），识别自带标点和数字/日期反标点规范化（ITN）。全部推理在本机完成，无任何网络请求。

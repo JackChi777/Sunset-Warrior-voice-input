@@ -8,6 +8,8 @@
 >
 > (English below)
 
+> **📌 About**：Hold right Shift, speak, and release to auto-paste the recognized text into the active window — an offline, free, fully-local voice input tool (SenseVoice Small).
+
 Offline voice input tool, powered by [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) with the **SenseVoice Small** model (standard edition, ~163 MB, pure int8, runs smoothly on CPU). Hold **right Shift** to talk; when you release, the recognized text is automatically pasted into the currently active window. All inference runs locally — no network requests.
 
 > **Language note:** The rule-based post-processing pipeline is currently **optimized for Chinese (中文) only**. The `的/地/得` correction, homophone correction, Chinese-numeral conversion, and variant-form normalization all target Chinese text. For English, Japanese, and Korean, the speech recognition itself works, but the advanced text corrections do not apply. Support for other languages is planned.
