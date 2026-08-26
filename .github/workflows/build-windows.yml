@@ -23,7 +23,18 @@ jobs:
           pip install -r pc/requirements.txt
 
       - name: 下载 SenseVoice 模型（约 163MB）
-        run: python scripts/download_models.py
+        shell: bash
+        run: |
+          model=sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17
+          url="https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/${model}.tar.bz2"
+          mkdir -p voice-models
+          echo "下载 $url"
+          curl -L --fail --retry 3 --retry-delay 5 \
+            -o "${TEMP}/model.tar.bz2" "$url"
+          ls -la "${TEMP}/model.tar.bz2"
+          echo "解压..."
+          python -c "import tarfile; tarfile.open(r'${TEMP}/model.tar.bz2','r:bz2').extractall('voice-models')"
+          test -f "voice-models/${model}/model.int8.onnx" && echo "模型就绪 ✓"
 
       - name: 打包 EXE
         run: python scripts/build_exe.py

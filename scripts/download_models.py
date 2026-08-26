@@ -83,8 +83,13 @@ def main():
     print(f"      -> {archive}")
     try:
         _download(url, archive)
+    except urllib.error.HTTPError as e:
+        print(f"\n[error] 下载失败: HTTP {e.code} {e.reason}")
+        print("提示：若为 403，说明被服务器拒绝；若为 404，说明 URL 已失效。")
+        print("请检查网络，或手动下载后解压到 voice-models/ 目录。")
+        sys.exit(1)
     except Exception as e:
-        print(f"\n[error] 下载失败: {e}")
+        print(f"\n[error] 下载失败: {type(e).__name__}: {e}")
         print("请检查网络，或手动下载后解压到 voice-models/ 目录。")
         sys.exit(1)
 
